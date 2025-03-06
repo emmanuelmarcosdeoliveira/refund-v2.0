@@ -1,6 +1,7 @@
 import searchSVG from "../assets/search.svg";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { Pagination } from "../components/Pagination";
 import { RefundItem } from "../components/RefundItem";
 import { CATEGORIES } from "../utils/categories";
 import { formatCurrency } from "../utils/formatCurrency";
@@ -47,6 +48,7 @@ export function Dashboard() {
         <RefundItem data={REFUND_EXAMPLE} />
         <RefundItem data={REFUND_EXAMPLE} />
       </div>
+      <Pagination currency={1} total={10} />
     </div>
   );
 }
