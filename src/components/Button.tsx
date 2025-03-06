@@ -5,7 +5,7 @@ const variants = {
   button: {
     base: "h-12",
     icon: "w-12 h-12",
-    iconSmall: "w-6 h-6",
+    iconSmall: "w-8 h-8",
   },
 };
 
@@ -29,8 +29,9 @@ export function Button({
       {...rest}
       disabled={isLoading}
       className={classMerge([
-        "flex cursor-pointer items-center justify-center rounded-lg bg-green-100 text-white transition-colors ease-linear hover:bg-green-200 disabled:cursor-progress disabled:opacity-50",
+        "flex cursor-pointer items-center justify-center rounded-lg bg-green-100 text-white transition-colors ease-linear hover:bg-green-200 disabled:opacity-50",
         variants.button[variant],
+        isLoading && "cursor-progress",
         className,
       ])}
       {...rest}

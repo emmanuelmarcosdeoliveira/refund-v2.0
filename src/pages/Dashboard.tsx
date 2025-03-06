@@ -1,3 +1,4 @@
+import { useState } from "react";
 import searchSVG from "../assets/search.svg";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
@@ -15,9 +16,24 @@ const REFUND_EXAMPLE = {
 };
 
 export function Dashboard() {
+  const [page, setPage] = useState(1);
+  const [totalOfPage, setTotalOfPage] = useState(10);
+
   function handleSubmit(formData: { get: (arg0: string) => void }) {
     const search = formData.get("search");
     console.log(search);
+  }
+
+  function handlePagination(action: "nextPage" | "prevPage") {
+    setPage((prevPage) => {
+      if (action === "nextPage" && prevPage < totalOfPage) {
+        return prevPage + 1;
+      }
+      if (action === "prevPage" && prevPage > 1) {
+        return prevPage - 1;
+      }
+      return prevPage;
+    });
   }
 
   return (
@@ -48,7 +64,12 @@ export function Dashboard() {
         <RefundItem data={REFUND_EXAMPLE} />
         <RefundItem data={REFUND_EXAMPLE} />
       </div>
-      <Pagination currency={1} total={10} />
+      <Pagination
+        onNext={() => handlePagination("nextPage")}
+        onPrevios={() => handlePagination("prevPage")}
+        currency={page}
+        total={totalOfPage}
+      />
     </div>
   );
 }
