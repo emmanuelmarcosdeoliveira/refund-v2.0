@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router";
-import { EmployeeRoutes } from "./EmployeeRoutes";
-
+import { ManagerRoutes } from "./ManagerRoutes";
 export function Routes() {
   return (
     <BrowserRouter>
       {/* <AuthRoutes /> */}
-      <EmployeeRoutes />
+      {/* <EmployeeRoutes /> */}
+      <ManagerRoutes />
     </BrowserRouter>
   );
 }
