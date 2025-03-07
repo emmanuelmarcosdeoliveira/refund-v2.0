@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Select } from "../components/Select";
@@ -7,23 +7,26 @@ import { Upload } from "../components/Upload";
 import { CATEGORIES, CATEGORIES_KEYS } from "../utils/categories";
 
 export function Refund() {
-  const [category, setCategory] = useState("");
-  const [isloading, setIsLoading] = useState(false);
+  const [name, setName] = useState("Hotel Evento");
+  const [amount, setAmount] = useState("45");
+  const [category, setCategory] = useState("Hospedagem");
+  const [isLoading] = useState(false);
   const [filename, setFileName] = useState<File | null>(null);
   const navigate = useNavigate();
+  const params = useParams<{ id: string }>();
 
-  function handleSubmit(formData: { get: (arg0: string) => void }) {
-    const request = formData.get("request");
-    const category = formData.get("category");
-    const value = formData.get("value");
-    const upload = formData.get("upload");
-    console.log(request, category, value, upload);
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    console.log(name, amount, category, filename);
+    if (params.id) {
+      return navigate(-1);
+    }
     navigate("/confirm", { state: { fromSubmit: true } });
   }
 
   return (
     <form
-      action={handleSubmit}
+      onSubmit={onSubmit}
       className="flex w-full flex-col gap-6 rounded-xl bg-gray-500 p-10 lg:min-w-[512px]"
     >
       <header>
@@ -34,14 +37,20 @@ export function Refund() {
           Dados da despesa para solicitar Reembolso
         </p>
       </header>
-      <Input name="request" required legend="Nome da solicitação" />
+      <Input
+        required
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        legend="Nome da solicitação"
+        disabled={!!params.id}
+      />
       <div className="flex gap-4">
         <Select
-          name="category"
           required
           legend="Categoria"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          disabled={!!params.id}
         >
           {CATEGORIES_KEYS.map((category, index) => (
             <option value={category} key={index}>
@@ -49,11 +58,22 @@ export function Refund() {
             </option>
           ))}
         </Select>
-        <Input name="value" required legend="valor" />
+        <Input
+          required
+          legend="valor"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          disabled={!!params.id}
+        />
       </div>
-      <Upload filename={filename && filename.name} name="upload" />
-      <Button isLoading={isloading} type="submit">
-        Enviar
+
+      <Upload
+        filename={filename && filename.name}
+        onChange={(e) => e.target.files && setFileName(e.target.files[0])}
+      />
+
+      <Button isLoading={isLoading} type="submit">
+        {params.id ? "Voltar" : "Enviar"}
       </Button>
     </form>
   );
