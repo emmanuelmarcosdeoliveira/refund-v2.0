@@ -11,7 +11,7 @@ import { CATEGORIES, CATEGORIES_KEYS } from "../utils/categories";
 export function Refund() {
   const [name, setName] = useState("Hotel Evento");
   const [amount, setAmount] = useState("45");
-  const [category, setCategory] = useState("Hospedagem");
+  const [category, setCategory] = useState("Transporte");
   const [isLoading] = useState(false);
   const [filename, setFileName] = useState<File | null>(null);
   const navigate = useNavigate();
