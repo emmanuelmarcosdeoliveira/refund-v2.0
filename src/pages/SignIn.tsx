@@ -27,11 +27,11 @@ export function SignIn() {
         type="password"
         placeholder="123456"
       />
-      <Button isLoading={isLoading} type="submit">
+      <Button className="my-10" isLoading={isLoading} type="submit">
         Entrar
       </Button>
       <Link
-        className="mt-10 mb-4 text-center text-sm font-semibold text-gray-100 transition ease-linear hover:text-green-800"
+        className="mb-4 text-center text-sm font-semibold text-gray-100 transition ease-linear hover:text-green-800"
         to="/signup"
       >
         Criar conta
