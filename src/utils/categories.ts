@@ -8,7 +8,7 @@ export const CATEGORIES = {
   food: { name: "Alimentação", icon: foodSVG },
   others: { name: "Outros", icon: otherSVG },
   service: { name: "Serviços", icon: servicesSVG },
-  transport: { name: "Transportes", icon: transportSVG },
+  transport: { name: "Transporte", icon: transportSVG },
   accommodation: { name: "Hospedagem", icon: accommodationSVG },
 };
 

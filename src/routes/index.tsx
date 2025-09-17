@@ -5,8 +5,6 @@ import { AuthRoutes } from "./AuthRoutes";
 import { EmployeeRoutes } from "./EmployeeRoutes";
 import { ManagerRoutes } from "./ManagerRoutes";
 
-const isLoading = true;
-
 const session = {
   user: {
     role: "",
