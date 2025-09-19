@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
@@ -6,92 +5,77 @@ import { z, ZodError } from "zod";
 import { api } from "../services/api";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
+import { useActionState } from "react";
+
 const signUpSchema = z
   .object({
     name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
+
     email: z.email({ message: "E-mail inválido" }),
+
     password: z
       .string()
       .min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
+
     passwordConfirm: z.string({ message: "Confirme a senha" }),
   })
+
   .refine((data) => data.password === data.passwordConfirm, {
     message: "As senhas não conferem",
     path: ["passwordConfirm"],
   });
 
 export function SignUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [state, formAction, isLoading] = useActionState(onSubmit, null);
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
+  async function onSubmit(_: unknown, formData: FormData) {
     try {
-      setIsLoading(true);
       const data = signUpSchema.parse({
-        name,
-        email,
-        password,
-        passwordConfirm,
+        name: formData.get("name"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+        passwordConfirm: formData.get("passwordConfirm"),
       });
       await api.post("/users", data);
-      if (confirm("Cadastrado com sucesso. Ir para a tela de entrar ?")) {
-        navigate("/");
-      }
+      navigate("/");
     } catch (error) {
-      console.log(error);
       if (error instanceof ZodError) {
-        return alert(error.issues[0].message);
+        return { message: error.issues[0].message };
       }
       if (error instanceof AxiosError) {
-        return alert(error.response?.data.message);
+        return { message: error.response?.data.message };
       }
-      alert("Não foi possível cadastrar nesse momento");
-    } finally {
-      setIsLoading(false);
+      return { message: "Não foi possível cadastrar nesse momento" };
     }
   }
   return (
-    <form onSubmit={onSubmit} className="flex w-full flex-col gap-2">
-      <Input
-        required
-        legend="nome"
-        name="name"
-        placeholder="seu nome"
-        onChange={(e) => setName(e.target.value)}
-      />
+    <form action={formAction} className="flex w-full flex-col gap-2">
+      <Input legend="nome" name="name" placeholder="seu nome" />
 
       <Input
-        required
         legend="E-mail"
         type="email"
         name="email"
         placeholder="seu email@.com"
-        onChange={(e) => setEmail(e.target.value)}
       />
       <Input
-        required
-        name="senha"
+        name="password"
         legend="senha"
         type="password"
         placeholder="123456"
-        onChange={(e) => setPassword(e.target.value)}
       />
       <Input
-        required
-        name="confirmeSenha"
+        name="passwordConfirm"
         legend="Confirme a senha"
         type="password"
         placeholder="123456"
-        onChange={(e) => setPasswordConfirm(e.target.value)}
       />
 
-      <Button className="my-10" isLoading={isLoading} type="submit">
+      <span className="my-6 text-center text-sm font-medium text-red-700">
+        {state?.message}
+      </span>
+      <Button isLoading={isLoading} type="submit">
         Cadastrar
       </Button>
       <Link
