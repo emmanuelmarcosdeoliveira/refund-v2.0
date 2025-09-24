@@ -1,4 +1,9 @@
+import { AuthProvider } from "./contexts/AuthProvider";
 import { Routes } from "./routes";
 export function App() {
-  return <Routes />;
+  return (
+    <AuthProvider>
+      <Routes />;
+    </AuthProvider>
+  );
 }

@@ -1,10 +1,11 @@
+import { AxiosError } from "axios";
+import { useActionState } from "react";
 import { Link } from "react-router";
+import { z, ZodError } from "zod";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
-import { useActionState } from "react";
-import { z, ZodError } from "zod";
+import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
-import { AxiosError } from "axios";
 
 const signInSchema = z.object({
   email: z.email({ message: "E-mail inválido" }),
@@ -13,6 +14,7 @@ const signInSchema = z.object({
 
 export function SignIn() {
   const [state, formAction, isLoading] = useActionState(signIn, null);
+  const auth = useAuth();
 
   async function signIn(_: unknown, formData: FormData) {
     try {
@@ -21,7 +23,7 @@ export function SignIn() {
         password: formData.get("password"),
       });
       const response = await api.post("/sessions", data);
-      console.log(response.data);
+      auth.save(response.data);
     } catch (error) {
       console.log(error);
       if (error instanceof ZodError) {
@@ -35,7 +37,7 @@ export function SignIn() {
   }
 
   return (
-    <form action={formAction} className="flex w-full flex-col gap-2">
+    <form action={formAction} className="flex flex-col gap-2 w-full">
       <Input
         legend="E-mail"
         type="email"
@@ -48,14 +50,14 @@ export function SignIn() {
         type="password"
         placeholder="123456"
       />
-      <p className="my-4 text-center text-sm font-medium text-red-700">
+      <p className="font-medium my-4 text-center text-red-700 text-sm">
         {state?.message}
       </p>
       <Button isLoading={isLoading} className="" type="submit">
         Entrar
       </Button>
       <Link
-        className="my-4 mb-4 text-center text-sm font-semibold text-gray-100 transition ease-linear hover:text-green-800"
+        className="ease-linear font-semibold hover:text-green-800 mb-4 my-4 text-center text-gray-100 text-sm transition"
         to="/signup"
       >
         Criar conta
