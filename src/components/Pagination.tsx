@@ -1,6 +1,7 @@
 import leftSVG from "../assets/left.svg";
 import rightSVG from "../assets/right.svg";
 import { Button } from "./Button";
+
 type PaginationProps = {
   currency: number;
   total: number;

@@ -7,7 +7,7 @@ import transportSVG from "../assets/transport.svg";
 export const CATEGORIES = {
   food: { name: "Alimentação", icon: foodSVG },
   others: { name: "Outros", icon: otherSVG },
-  service: { name: "Serviços", icon: servicesSVG },
+  services: { name: "Serviços", icon: servicesSVG },
   transport: { name: "Transporte", icon: transportSVG },
   accommodation: { name: "Hospedagem", icon: accommodationSVG },
 };
