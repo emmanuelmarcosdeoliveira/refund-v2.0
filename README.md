@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1974&auto=format&fit=crop" alt="Banner do Projeto Refund" style="width:100%; border-radius:8px;" />
+<img src="https://res.cloudinary.com/delo0gvyb/image/upload/v1759242629/refund_eituds.jpg" alt="Banner - Aplicação de Reembolso (Dashboard Financeiro)" style="width:100%; border-radius:8px;" />
 
 # Refund v2.0
 
