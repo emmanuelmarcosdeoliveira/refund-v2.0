@@ -60,7 +60,7 @@ export function Dashboard() {
 
   useEffect(() => {
     fetchRefunds();
-  }, []);
+  }, [page]);
 
   return (
     <div className="rounded-xl bg-gray-500 p-10 md:min-w-[768px]">
