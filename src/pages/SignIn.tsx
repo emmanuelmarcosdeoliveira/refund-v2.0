@@ -37,7 +37,7 @@ export function SignIn() {
   }
 
   return (
-    <form action={formAction} className="flex flex-col gap-2 w-full">
+    <form action={formAction} className="flex w-full flex-col gap-2">
       <Input
         legend="E-mail"
         type="email"
@@ -50,14 +50,14 @@ export function SignIn() {
         type="password"
         placeholder="123456"
       />
-      <p className="font-medium my-4 text-center text-red-700 text-sm">
+      <p className="my-4 text-center text-sm font-medium text-red-700">
         {state?.message}
       </p>
       <Button isLoading={isLoading} className="" type="submit">
         Entrar
       </Button>
       <Link
-        className="ease-linear font-semibold hover:text-green-800 mb-4 my-4 text-center text-gray-100 text-sm transition"
+        className="my-4 mb-4 text-center text-sm font-semibold text-gray-100 transition ease-linear hover:text-green-800"
         to="/signup"
       >
         Criar conta
