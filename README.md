@@ -43,7 +43,11 @@
 
 ## Visão Geral
 
-Aplicação web React para gestão de reembolsos, construída com Vite e TypeScript, estilizada com TailwindCSS e validações com Zod. Roteamento via React Router e consumo de API com Axios.
+Aplicação web fullstack React para gestão de reembolsos, construída com Vite e TypeScript, estilizada com TailwindCSS e validações com Zod. Roteamento via React Router e consumo de API com Axios.
+
+> [!IMPORTANT]
+> O Back-end da aplicação foi desenvolvido com Node.js e Express esta no repositório indicado abaixo
+> [refund API](https://github.com/emmanuelmarcosdeoliveira/refund-api)
 
 ## Tecnologias e Bibliotecas
 
