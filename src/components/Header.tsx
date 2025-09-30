@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import logoSVG from "../assets/logo.svg";
 import logoutSVG from "../assets/logout.svg";
 import { useAuth } from "../hooks/useAuth";
@@ -10,12 +11,14 @@ export function Header() {
         <span className="text-sm font-semibold text-gray-200">
           Olá, {auth.session?.user.name}
         </span>
-        <img
-          className="my-8 cursor-pointer transition ease-linear hover:opacity-75"
-          src={logoutSVG}
-          alt="ícone de sair | OFS"
-          onClick={() => auth.remove()}
-        />
+        <Link to="/">
+          <img
+            className="my-8 cursor-pointer transition ease-linear hover:opacity-75"
+            src={logoutSVG}
+            alt="ícone de sair | OFS"
+            onClick={() => auth.remove()}
+          />
+        </Link>
       </div>
     </header>
   );
