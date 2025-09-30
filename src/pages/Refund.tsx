@@ -9,6 +9,8 @@ import { z, ZodError } from "zod";
 import { CATEGORIES, CATEGORIES_KEYS } from "../utils/categories";
 import { api } from "../services/api";
 import { AxiosError } from "axios";
+import React from "react";
+import { formatCurrency } from "../utils/formatCurrency";
 const refundSchema = z.object({
   name: z
     .string()
@@ -27,6 +29,7 @@ export function Refund() {
   const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
   const params = useParams<{ id: string }>();
+  const [fileURL, setFileURL] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -68,6 +71,29 @@ export function Refund() {
       setIsLoading(false);
     }
   }
+
+  async function fetchRefund(id: string) {
+    try {
+      const { data } = await api.get<RefundAPIResponse>(`/refunds/${id}`);
+      setName(data.name);
+      setCategory(data.category);
+      setAmount(formatCurrency(data.amount));
+      setFileURL(data.filename);
+      console.log(data.filename);
+    } catch (error) {
+      console.log(error);
+      if (error instanceof AxiosError) {
+        return alert(error.response?.data.message);
+      }
+      return alert("não foi possível carregar as informações tente mais tarde");
+    }
+  }
+
+  React.useEffect(() => {
+    if (params.id) {
+      fetchRefund(params.id);
+    }
+  }, [params.id]);
 
   return (
     <form
@@ -112,9 +138,9 @@ export function Refund() {
         />
       </div>
 
-      {params.id ? (
+      {params.id && fileURL ? (
         <a
-          href="https://www.ofs.dev.br"
+          href={` http://localhost:3333/uploads/${fileURL}`}
           target="_blank"
           className="my-6 flex items-center justify-center gap-2 text-sm font-semibold text-green-100 transition ease-linear hover:opacity-70"
         >
