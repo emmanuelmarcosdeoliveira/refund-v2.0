@@ -140,7 +140,7 @@ export function Refund() {
 
       {params.id && fileURL ? (
         <a
-          href={` http://localhost:3333/uploads/${fileURL}`}
+          href={` https://refund-api-dcvr.onrender.com/uploads/${fileURL}`}
           target="_blank"
           className="my-6 flex items-center justify-center gap-2 text-sm font-semibold text-green-100 transition ease-linear hover:opacity-70"
         >
