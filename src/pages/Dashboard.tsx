@@ -8,6 +8,7 @@ import { CATEGORIES } from "../utils/categories";
 import { formatCurrency } from "../utils/formatCurrency";
 import { api } from "../services/api";
 import { AxiosError } from "axios";
+import RefundAmount from "../components/RefundAmount";
 
 const PER_PAGE = 5;
 
@@ -16,22 +17,35 @@ export function Dashboard() {
   const [page, setPage] = useState(1);
   const [totalOfPage, setTotalOfPages] = useState(1);
   const [refunds, setRefunds] = useState<RefundItemProps[]>([]);
+  const [totalAmount, setTotalAmount] = useState(0); // 🧩 novo estado
 
   async function fetchRefunds() {
     try {
       const response = await api.get<RefundsPaginationAPIResponse>(
         `/refunds?name=${name.trim()}&page=${page}&perPage=${PER_PAGE}`,
       );
-      console.log(response);
+
+      const formattedRefunds = response.data.refunds.map((refund) => ({
+        id: refund.id,
+        name: refund.user.name,
+        description: refund.name,
+        amount: refund.amount, // guarda o valor numérico bruto aqui
+        categoryImg: CATEGORIES[refund.category].icon,
+      }));
+
+      // ✅ soma total dos reembolsos recebidos
+      const total = formattedRefunds.reduce(
+        (acc, item) => acc + item.amount,
+        0,
+      );
+
       setRefunds(
-        response.data.refunds.map((refund) => ({
-          id: refund.id,
-          name: refund.user.name,
-          description: refund.name,
-          amount: formatCurrency(refund.amount),
-          categoryImg: CATEGORIES[refund.category].icon,
+        formattedRefunds.map((r) => ({
+          ...r,
+          amount: formatCurrency(r.amount),
         })),
       );
+      setTotalAmount(total); // atualiza o total
       setTotalOfPages(response.data.pagination.totalPages);
     } catch (error) {
       console.log(error);
@@ -43,17 +57,13 @@ export function Dashboard() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    fetchRefunds();
+    fetchRefunds(); // 🔄 atualiza a lista e o total conforme a busca
   }
 
   function handlePagination(action: "nextPage" | "prevPage") {
     setPage((prevPage) => {
-      if (action === "nextPage" && prevPage < totalOfPage) {
-        return prevPage + 1;
-      }
-      if (action === "prevPage" && prevPage > 1) {
-        return prevPage - 1;
-      }
+      if (action === "nextPage" && prevPage < totalOfPage) return prevPage + 1;
+      if (action === "prevPage" && prevPage > 1) return prevPage - 1;
       return prevPage;
     });
   }
@@ -70,7 +80,6 @@ export function Dashboard() {
         onSubmit={onSubmit}
         className="mt-6 flex flex-1 items-center justify-between gap-2 border-b-[1px] border-b-gray-400 pb-6 md:flex-row"
       >
-        {" "}
         <div className="w-full">
           <Input
             name="search"
@@ -88,6 +97,10 @@ export function Dashboard() {
           <RefundItem key={item.id} data={item} href={`/refund/${item.id}`} />
         ))}
       </div>
+
+      {/* ✅ Passa o total atualizado como prop */}
+      <RefundAmount amount={totalAmount} />
+
       <Pagination
         currency={page}
         total={totalOfPage}
