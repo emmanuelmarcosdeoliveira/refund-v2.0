@@ -1,16 +1,7 @@
 <div align="center">
-
 <img src="https://res.cloudinary.com/delo0gvyb/image/upload/v1759242629/refund_eituds.jpg" alt="Banner - Aplicação de Reembolso (Dashboard Financeiro)" style="width:100%; border-radius:8px;" />
 
 # Refund v2.0
-
-<p>
-  <a href="#setup"><img alt="Static Badge" src="https://img.shields.io/badge/Setup-Docs-555?style=plastic&logo=readthedocs&logoColor=%23fff"></a>
-  <a href="#tecnologias"><img alt="Static Badge" src="https://img.shields.io/badge/Stack-Tecnologias-0E1117?style=plastic&logo=stackshare&logoColor=%23fff"></a>
-  <a href="#padroes"><img alt="Static Badge" src="https://img.shields.io/badge/Padr%C3%B5es-Guia-1D4ED8?style=plastic&logo=blueprint&logoColor=%23fff"></a>
-  <a href="#scripts"><img alt="Static Badge" src="https://img.shields.io/badge/Scripts-%F0%9F%94%A5-059669?style=plastic&logo=gnometerminal&logoColor=%23fff"></a>
-  <a href="#configuracoes"><img alt="Static Badge" src="https://img.shields.io/badge/Config-Env-7C3AED?style=plastic&logo=dotenv&logoColor=%23fff"></a>
-</p>
 
 <p>
   <img alt="Static Badge" src="https://img.shields.io/badge/React-19-087EA4?style=plastic&logo=react&logoColor=%23fff">
@@ -22,6 +13,8 @@
   <img alt="Static Badge" src="https://img.shields.io/badge/Zod-4-3E67B1?style=plastic&logo=zotero&logoColor=%23fff">
   <img alt="Static Badge" src="https://img.shields.io/badge/ESLint-9-4B32C3?style=plastic&logo=eslint&logoColor=%23fff">
   <img alt="Static Badge" src="https://img.shields.io/badge/Prettier-3-1A2C34?style=plastic&logo=prettier&logoColor=%23fff">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Sonner-2-FC6B35?style=plastic&logo=notion&logoColor=%23fff">
+  <img alt="Static Badge" src="https://img.shields.io/badge/clsx-2-1572B6?style=plastic&logo=css3&logoColor=%23fff">
 </p>
 
 <small>Desenvolvido por <strong>Emmanuel Oliveira</strong> • Fonte de estudo: <strong>[Rocketseat](https://www.rocketseat.com.br/)</strong></small>
@@ -32,7 +25,17 @@
 
 ### 📚 Menu
 
+<p>
+  <a href="#updates"><img alt="Static Badge" src="https://img.shields.io/badge/Updates-Features-FF6B35?style=plastic&logo=rocket&logoColor=%23fff"></a>
+  <a href="#setup"><img alt="Static Badge" src="https://img.shields.io/badge/Setup-Docs-555?style=plastic&logo=readthedocs&logoColor=%23fff"></a>
+  <a href="#tecnologias"><img alt="Static Badge" src="https://img.shields.io/badge/Stack-Tecnologias-0E1117?style=plastic&logo=stackshare&logoColor=%23fff"></a>
+  <a href="#padroes"><img alt="Static Badge" src="https://img.shields.io/badge/Padr%C3%B5es-Guia-1D4ED8?style=plastic&logo=blueprint&logoColor=%23fff"></a>
+  <a href="#scripts"><img alt="Static Badge" src="https://img.shields.io/badge/Scripts-%F0%9F%94%A5-059669?style=plastic&logo=gnometerminal&logoColor=%23fff"></a>
+  <a href="#configuracoes"><img alt="Static Badge" src="https://img.shields.io/badge/Config-Env-7C3AED?style=plastic&logo=dotenv&logoColor=%23fff"></a>
+</p>
+
 - **🏁 Início**: visão geral e banner
+- **🚀 Updates**: funcionalidades e features implementadas
 - **🧰 Setup**: instalação e execução
 - **🧱 Tecnologias**: bibliotecas e ferramentas
 - **🧩 Padrões**: organização e boas práticas
@@ -49,16 +52,91 @@ Aplicação web fullstack React para gestão de reembolsos, construída com Vite
 > O Back-end da aplicação foi desenvolvido com Node.js e Express esta no repositório indicado
 > [refund API](https://github.com/emmanuelmarcosdeoliveira/refund-api)
 
+## 🚀 Updates e Funcionalidades Implementadas
+
+<a id="updates"></a>
+
+### ✨ Principais Features
+
+#### 🔐 **Sistema de Autenticação e Autorização**
+
+- **Login/Logout** com validação de credenciais usando Zod
+- **Cadastro de usuários** com seleção de roles (employee/manager)
+- **Controle de acesso baseado em roles** com rotas protegidas
+- **Persistência de sessão** via localStorage com token JWT
+- **Context API** para gerenciamento global de autenticação
+
+#### 👥 **Sistema de Roles e Permissões**
+
+- **Employee Routes**: Acesso limitado para funcionários
+  - Criação de solicitações de reembolso
+  - Página de confirmação de envio
+- **Manager Routes**: Acesso completo para gerentes
+  - Dashboard com lista de solicitações
+  - Visualização detalhada de cada reembolso
+
+#### 💰 **Gestão de Reembolsos**
+
+- **Criação de solicitações** com validação completa
+- **Categorização** por tipo (Alimentação, Transporte, Hospedagem, Serviços, Outros)
+- **Upload de comprovantes** com preview de arquivos
+- **Dashboard com paginação** e busca por nome
+- **Cálculo automático** do total de reembolsos
+- **Formatação de moeda** brasileira (BRL)
+
+#### 🎨 **Interface e Experiência do Usuário**
+
+- **Design responsivo** com TailwindCSS 4
+- **Loading states** com react-spinners
+- **Toast notifications** com Sonner para feedback
+- **Componentes reutilizáveis** (Button, Input, Select, Upload, etc.)
+- **Navegação intuitiva** com React Router 7
+- **Layouts específicos** para autenticação e aplicação
+
+#### 🔧 **Funcionalidades Técnicas**
+
+- **Validação de formulários** com Zod schemas
+- **Tratamento de erros** com Axios interceptors
+- **Composição de classes CSS** com clsx e tailwind-merge
+- **TypeScript** com tipagem completa
+- **Estrutura modular** por domínios
+- **Hooks customizados** para lógica reutilizável
+
+### 🆕 **Tecnologias Adicionadas**
+
+- **Sonner 2**: Sistema de notificações toast
+- **clsx**: Utilitário para composição de classes CSS
+- **react-spinners**: Componentes de loading animados
+
+### 📱 **Páginas Implementadas**
+
+- `SignIn`: Login de usuários
+- `SignUp`: Cadastro com seleção de role
+- `Dashboard`: Lista de solicitações (managers)
+- `Refund`: Criação/visualização de reembolsos
+- `Confirm`: Confirmação de envio (employees)
+- `NotFound`: Página de erro 404
+
+### 🏗️ **Arquitetura**
+
+- **Rotas protegidas** por role
+- **Context providers** para estado global
+- **Services layer** para comunicação com API
+- **DTOs** para tipagem de dados
+- **Utils** para formatação e helpers
+- **Layouts** específicos por contexto
+
 ## Tecnologias e Bibliotecas
 
 <a id="tecnologias"></a>
 
 - **Framework**: React 19, Vite 6, TypeScript 5.7
-- **Estilo**: TailwindCSS 4, `@tailwindcss/vite`, `tailwind-merge`
+- **Estilo**: TailwindCSS 4, `@tailwindcss/vite`, `tailwind-merge`, `clsx`
 - **Roteamento**: React Router 7
 - **HTTP**: Axios 1.12
 - **Validação**: Zod 4
 - **UI Loading**: `react-spinners`
+- **Notificações**: Sonner 2 (Toast notifications)
 - **Qualidade**: ESLint 9, Prettier 3, `prettier-plugin-tailwindcss`
 
 ## Padrões de Projeto e Organização
@@ -181,6 +259,7 @@ Released in 2025 This project is under the **MIT license**<br>
 <br>
 
 <div align="center">
-**⭐ Se este projeto foi útil para você, considere dar uma estrela!**
-
+<strong>
+⭐ Se este projeto foi útil para você, considere dar uma estrela!
+</strong>
 </div>
