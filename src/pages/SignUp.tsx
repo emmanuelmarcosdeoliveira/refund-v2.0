@@ -6,18 +6,19 @@ import { api } from "../services/api";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
 import { useActionState } from "react";
+import { SelectRoles } from "../components/SelectRoles";
+import React from "react";
+import { toast } from "sonner";
 
 const signUpSchema = z
   .object({
     name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
-
     email: z.email({ message: "E-mail inválido" }),
-
     password: z
       .string()
       .min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
-
     passwordConfirm: z.string({ message: "Confirme a senha" }),
+    role: z.string({ message: "selecione uma atribuição" }),
   })
 
   .refine((data) => data.password === data.passwordConfirm, {
@@ -26,6 +27,7 @@ const signUpSchema = z
   });
 
 export function SignUp() {
+  const [select, SetSelect] = React.useState("");
   const navigate = useNavigate();
   const [state, formAction, isLoading] = useActionState(onSubmit, null);
 
@@ -36,6 +38,7 @@ export function SignUp() {
         email: formData.get("email"),
         password: formData.get("password"),
         passwordConfirm: formData.get("passwordConfirm"),
+        role: formData.get("role"),
       });
       await api.post("/users", data);
       navigate("/");
@@ -49,6 +52,7 @@ export function SignUp() {
       return { message: "Não foi possível cadastrar nesse momento" };
     }
   }
+
   return (
     <form action={formAction} className="flex w-full flex-col gap-2">
       <Input legend="nome" name="name" placeholder="seu nome" />
@@ -71,11 +75,32 @@ export function SignUp() {
         type="password"
         placeholder="123456"
       />
+      <SelectRoles
+        name="role"
+        required
+        onChange={(e) => SetSelect(e.target.value)}
+        legend="Selecione a atribuição"
+        value={select}
+      >
+        <option disabled className="text-inherit hover:bg-green-100" value="">
+          Selecione
+        </option>
+        <option className="text-inherit" value="employee">
+          funcionário
+        </option>
+        <option className="text-inherit" value="manager">
+          gerente
+        </option>
+      </SelectRoles>
 
       <span className="my-6 text-center text-sm font-medium text-red-700">
         {state?.message}
       </span>
-      <Button isLoading={isLoading} type="submit">
+      <Button
+        onClick={() => toast.success("usuário cadastrado com sucesso")}
+        isLoading={isLoading}
+        type="submit"
+      >
         Cadastrar
       </Button>
       <Link
