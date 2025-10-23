@@ -94,7 +94,11 @@ export function Dashboard() {
 
       <div className="mt-6 flex max-h-[342px] flex-col gap-4 overflow-y-scroll">
         {refunds.map((item) => (
-          <RefundItem key={item.id} data={item} href={`/refund/${item.id}`} />
+          <RefundItem
+            key={item.id}
+            data={item}
+            href={`https://refund-ofs.vercel.app/refund/${item.id}`}
+          />
         ))}
       </div>
 
