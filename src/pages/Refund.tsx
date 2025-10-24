@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import fileSVG from "../assets/file.svg";
+//import fileSVG from "../assets/file.svg";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Select } from "../components/Select";
@@ -11,6 +11,7 @@ import { api } from "../services/api";
 import { AxiosError } from "axios";
 import React from "react";
 import { formatCurrency } from "../utils/formatCurrency";
+import { SecureImage } from "../components/secureImage";
 const refundSchema = z.object({
   name: z
     .string()
@@ -139,14 +140,13 @@ export function Refund() {
       </div>
 
       {params.id && fileURL ? (
-        <a
-          href={` https://refund-api-dcvr.onrender.com/uploads/${fileURL}`}
-          target="_blank"
-          className="my-6 flex items-center justify-center gap-2 text-sm font-semibold text-green-100 transition ease-linear hover:opacity-70"
-        >
-          <img src={fileSVG} alt="ícone de arquivo" />
-          Abrir Comprovante
-        </a>
+        <div className="my-6 flex flex-col items-center gap-4">
+          <SecureImage
+            src={`https://refund-api-dcvr.onrender.com/uploads/${fileURL}`}
+            alt="Recibo de reembolso"
+            filename={`recibo-${fileURL}`}
+          />
+        </div>
       ) : (
         <Upload
           filename={file && file.name}

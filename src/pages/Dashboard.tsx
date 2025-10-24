@@ -17,7 +17,7 @@ export function Dashboard() {
   const [page, setPage] = useState(1);
   const [totalOfPage, setTotalOfPages] = useState(1);
   const [refunds, setRefunds] = useState<RefundItemProps[]>([]);
-  const [totalAmount, setTotalAmount] = useState(0); // 🧩 novo estado
+  const [totalAmount, setTotalAmount] = useState(0);
 
   async function fetchRefunds() {
     try {
@@ -94,11 +94,7 @@ export function Dashboard() {
 
       <div className="mt-6 flex max-h-[342px] flex-col gap-4 overflow-y-scroll">
         {refunds.map((item) => (
-          <RefundItem
-            key={item.id}
-            data={item}
-            href={`https://refund-ofs.vercel.app/refund/${item.id}`}
-          />
+          <RefundItem key={item.id} data={item} href={`/refund/${item.id}`} />
         ))}
       </div>
 
