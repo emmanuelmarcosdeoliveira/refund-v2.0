@@ -37,43 +37,45 @@ export function SignIn() {
   }
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-[360px] flex-col items-center justify-center">
-      <Link to={"/"}>
-        <div className="flex justify-center gap-2">
-          <img className="mb-8" src="/icon.svg" alt="ícone refund" />
-          <span className="text-lg font-bold text-green-700">Refund</span>
-        </div>
-      </Link>
-
-      <form
-        action={formAction}
-        className="flex w-full flex-col gap-2 rounded-xl bg-gray-500 px-6 py-8"
-      >
-        <Input
-          legend="E-mail"
-          type="email"
-          name="email"
-          placeholder="seu email@.com"
-        />
-        <Input
-          name="password"
-          legend="senha"
-          type="password"
-          placeholder="123456"
-        />
-        <p className="my-4 text-center text-sm font-medium text-red-700">
-          {state?.message}
-        </p>
-        <Button isLoading={isLoading} className="" type="submit">
-          Entrar
-        </Button>
-        <Link
-          className="my-4 mb-4 text-center text-sm font-semibold text-gray-100 transition ease-linear hover:text-green-800"
-          to="/signup"
-        >
-          Criar conta
+    <section className="bg-gray-500">
+      <div className="mx-auto flex min-h-screen w-full max-w-[360px] flex-col items-center justify-center">
+        <Link to={"/"}>
+          <div className="flex justify-center gap-2">
+            <img className="mb-8" src="./icon.svg" alt="ícone refund" />
+            <span className="text-lg font-bold text-green-700">Refund</span>
+          </div>
         </Link>
-      </form>
-    </div>
+
+        <form
+          action={formAction}
+          className="flex w-full flex-col gap-2 rounded-xl bg-white px-6 py-8"
+        >
+          <Input
+            legend="E-mail"
+            type="email"
+            name="email"
+            placeholder="seu email@.com"
+          />
+          <Input
+            name="password"
+            legend="senha"
+            type="password"
+            placeholder="123456"
+          />
+          <p className="my-4 text-center text-sm font-medium text-red-700">
+            {state?.message}
+          </p>
+          <Button isLoading={isLoading} className="" type="submit">
+            Entrar
+          </Button>
+          <Link
+            className="my-4 mb-4 text-center text-sm font-semibold text-gray-100 transition ease-linear hover:text-green-800"
+            to="/signup"
+          >
+            Criar conta
+          </Link>
+        </form>
+      </div>
+    </section>
   );
 }

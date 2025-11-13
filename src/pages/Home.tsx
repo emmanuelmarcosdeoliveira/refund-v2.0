@@ -1,11 +1,6 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export default function Home() {
-  const navigate = useNavigate();
-
-  function navigateLogin() {
-    navigate("/signin");
-  }
   return (
     <div className="min-h-screen bg-gray-500">
       {/* Hero Section */}
@@ -40,8 +35,8 @@ export default function Home() {
               Rápido, transparente e sem complicações.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button
-                onClick={navigateLogin}
+              <Link
+                to="/signup"
                 className="group flex h-12 items-center gap-2 rounded-lg bg-green-100 px-8 text-base font-semibold text-white transition-colors hover:bg-green-200"
               >
                 Começar Agora
@@ -58,7 +53,7 @@ export default function Home() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -514,7 +509,10 @@ export default function Home() {
               gratuitamente hoje mesmo!
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button className="group flex h-14 items-center gap-2 rounded-lg bg-green-100 px-10 text-lg font-semibold text-white transition-colors hover:bg-green-200">
+              <Link
+                to="/signup"
+                className="group flex h-14 items-center gap-2 rounded-lg bg-green-100 px-10 text-lg font-semibold text-white transition-colors hover:bg-green-200"
+              >
                 Experimentar Grátis
                 <svg
                   className="h-5 w-5 transition-transform group-hover:translate-x-1"
@@ -529,7 +527,7 @@ export default function Home() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
