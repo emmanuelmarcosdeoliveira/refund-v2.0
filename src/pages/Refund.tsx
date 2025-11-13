@@ -142,7 +142,7 @@ export function Refund() {
       {params.id && fileURL ? (
         <div className="my-6 flex flex-col items-center gap-4">
           <SecureImage
-            src={`https://refund-api-dcvr.onrender.com/uploads/${fileURL}`}
+            src={`https://refund-api-3rp2.onrender.com/uploads/${fileURL}`}
             alt="Recibo de reembolso"
             filename={`recibo-${fileURL}`}
           />
