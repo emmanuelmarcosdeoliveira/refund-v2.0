@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-export default function RefundPromo() {
+export default function Home() {
   const navigate = useNavigate();
 
   function navigateLogin() {
