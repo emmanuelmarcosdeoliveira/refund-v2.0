@@ -1,13 +1,13 @@
 import { AxiosError } from "axios";
 import { useActionState } from "react";
 import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 import { z, ZodError } from "zod";
+import logo from "../assets/logo.svg";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
-import logo from "../assets/logo.svg";
-import { toast } from "sonner";
 
 const signInSchema = z.object({
   email: z.email({ message: "E-mail inválido" }),
@@ -43,7 +43,7 @@ export function SignIn() {
   return (
     <section className="bg-gray-500">
       <div className="mx-auto flex min-h-screen w-full max-w-[360px] flex-col items-center justify-center">
-        <Link to={"/home"}>
+        <Link to={"/"}>
           <div className="flex justify-center gap-2">
             <img className="mb-8" src={logo} alt="ícone refund" />
           </div>

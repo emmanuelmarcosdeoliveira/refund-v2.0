@@ -1,15 +1,13 @@
-import { Link } from "react-router";
+import { AxiosError } from "axios";
+import React, { useActionState } from "react";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
+import { z, ZodError } from "zod";
+import logo from "../assets/logo.svg";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
-import { z, ZodError } from "zod";
-import { api } from "../services/api";
-import { useNavigate } from "react-router";
-import { AxiosError } from "axios";
-import { useActionState } from "react";
 import { SelectRoles } from "../components/SelectRoles";
-import React from "react";
-import { toast } from "sonner";
-import logo from "../assets/logo.svg";
+import { api } from "../services/api";
 
 const signUpSchema = z
   .object({
@@ -58,7 +56,7 @@ export function SignUp() {
   return (
     <section className="bg-gray-500">
       <div className="mx-auto flex min-h-screen w-full max-w-[360px] flex-col items-center justify-center">
-        <Link to={"/home"}>
+        <Link to={"/"}>
           {" "}
           <div className="flex justify-center gap-2">
             <img className="mb-8" src={logo} alt="ícone refund" />
