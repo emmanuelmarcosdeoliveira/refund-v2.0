@@ -152,8 +152,8 @@ export default function Home() {
                 Preview de Imagens
               </h3>
               <p className="leading-relaxed text-gray-200">
-                Visualize comprovantes em alta qualidade diretamente na
-                plataforma, sem downloads desnecessários.
+                Baixe os comprovantes em alta qualidade diretamente na
+                plataforma.
               </p>
             </div>
 
@@ -179,7 +179,7 @@ export default function Home() {
               </h3>
               <p className="leading-relaxed text-gray-200">
                 Sistema com dois perfis distintos: Funcionário para solicitar e
-                Gerente para aprovar reembolsos.
+                Gerente para gerenciar os reembolsos.
               </p>
             </div>
           </div>
@@ -348,7 +348,7 @@ export default function Home() {
                         Revisar Solicitações
                       </p>
                       <p className="text-sm text-gray-200">
-                        Visualize todas as solicitações pendentes em um painel
+                        Visualize todas as solicitações em um painel
                         centralizado
                       </p>
                     </div>
@@ -372,8 +372,8 @@ export default function Home() {
                         Preview de Comprovantes
                       </p>
                       <p className="text-sm text-gray-200">
-                        Abra e visualize imagens de comprovantes em alta
-                        qualidade
+                        faz o download e visualize imagens de comprovantes em
+                        alta qualidade
                       </p>
                     </div>
                   </li>
@@ -392,9 +392,7 @@ export default function Home() {
                       />
                     </svg>
                     <div>
-                      <p className="font-semibold text-gray-100">
-                        Aprovar ou Rejeitar
-                      </p>
+                      <p className="font-semibold text-gray-100">Gerenciar</p>
                       <p className="text-sm text-gray-200">
                         Tome decisões rápidas com todas as informações
                         necessárias
@@ -439,7 +437,11 @@ export default function Home() {
                   <div className="rounded-lg border border-gray-300 bg-white p-4">
                     <p className="text-sm font-medium text-gray-100">
                       💡 <span className="font-bold">Dica:</span> Tire fotos
-                      claras dos comprovantes para agilizar a aprovação!
+                      claras dos comprovantes para agilizar a aprovação! aceita
+                      os formatos{" "}
+                      <span className="font-bold text-green-800">
+                        (".jpeg, .jpg, .png e .pdf")
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -452,12 +454,11 @@ export default function Home() {
                 </div>
                 <div className="flex-1">
                   <h3 className="mb-3 text-2xl font-bold text-gray-100">
-                    Gerente recebe a notificação
+                    Gerente acessa a solicitação
                   </h3>
                   <p className="mb-4 leading-relaxed text-gray-200">
-                    No painel de controle, ele visualiza todas as solicitações,
-                    organizadas por, valor e prioridade, facilitando a gestão do
-                    fluxo de aprovações.
+                    Gerente acessa a plataforma visualiza todas as
+                    solicitações,facilitando a gestão do fluxo de aprovações.
                   </p>
                   <div className="rounded-lg border border-gray-300 bg-white p-4">
                     <p className="text-sm font-medium text-gray-100">
@@ -479,10 +480,10 @@ export default function Home() {
                   </h3>
                   <p className="mb-4 leading-relaxed text-gray-200">
                     O gerente clica na solicitação e visualiza todos os
-                    detalhes. Com um clique no comprovante, abre-se um preview
-                    em alta qualidade da imagem, permitindo verificar a
-                    autenticidade e conformidade do documento sem precisar fazer
-                    download.
+                    detalhes. Com um clique no comprovante, faz o download e
+                    visualiza a imagem do comprovante em alta qualidade,
+                    permitindo verificar a autenticidade e conformidade do
+                    documento.
                   </p>
                   <div className="rounded-lg border border-gray-300 bg-white p-4">
                     <p className="text-sm font-medium text-gray-100">
