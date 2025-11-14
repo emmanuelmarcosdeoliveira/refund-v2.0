@@ -6,6 +6,7 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
+import logo from "../assets/logo.svg";
 
 const signInSchema = z.object({
   email: z.email({ message: "E-mail inválido" }),
@@ -39,10 +40,9 @@ export function SignIn() {
   return (
     <section className="bg-gray-500">
       <div className="mx-auto flex min-h-screen w-full max-w-[360px] flex-col items-center justify-center">
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <div className="flex justify-center gap-2">
-            <img className="mb-8" src="./icon.svg" alt="ícone refund" />
-            <span className="text-lg font-bold text-green-700">Refund</span>
+            <img className="mb-8" src={logo} alt="ícone refund" />
           </div>
         </Link>
 
