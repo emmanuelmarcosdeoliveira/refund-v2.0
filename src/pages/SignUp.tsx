@@ -43,6 +43,7 @@ export function SignUp() {
       });
       await api.post("/users", data);
       navigate("/signin");
+      toast.success("Usuário cadastrado com sucesso");
     } catch (error) {
       if (error instanceof ZodError) {
         return { message: error.issues[0].message };
@@ -50,7 +51,7 @@ export function SignUp() {
       if (error instanceof AxiosError) {
         return { message: error.response?.data.message };
       }
-      return { message: "Não foi possível cadastrar nesse momento" };
+      toast.error("Não foi possível cadastrar o usuário");
     }
   }
 
@@ -113,11 +114,7 @@ export function SignUp() {
           <span className="my-6 text-center text-sm font-medium text-red-700">
             {state?.message}
           </span>
-          <Button
-            onClick={() => toast.success("usuário cadastrado com sucesso")}
-            isLoading={isLoading}
-            type="submit"
-          >
+          <Button isLoading={isLoading} type="submit">
             Cadastrar
           </Button>
           <Link

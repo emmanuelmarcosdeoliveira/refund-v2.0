@@ -74,7 +74,7 @@ export function SecureImage({ src, filename }: SecureImageProps) {
       <button
         type="button"
         onClick={handleDownload}
-        className="rounded-lg bg-green-600 px-4 py-2 text-white transition hover:bg-green-700"
+        className="rounded-lg bg-green-200 px-4 py-2 text-white transition hover:bg-green-700"
       >
         Baixar Comprovante
       </button>

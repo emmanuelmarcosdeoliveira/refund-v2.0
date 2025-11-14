@@ -7,6 +7,7 @@ import { Input } from "../components/Input";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
 import logo from "../assets/logo.svg";
+import { toast } from "sonner";
 
 const signInSchema = z.object({
   email: z.email({ message: "E-mail inválido" }),
@@ -35,7 +36,7 @@ export function SignIn() {
       if (error instanceof AxiosError) {
         return { message: error.response?.data.message };
       }
-      return { message: "Não foi possível fazer o login" };
+      toast.error("Não foi possível fazer login");
     }
   }
 
