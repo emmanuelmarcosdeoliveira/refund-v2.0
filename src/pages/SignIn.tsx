@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { useActionState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { z, ZodError } from "zod";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
@@ -16,6 +16,7 @@ const signInSchema = z.object({
 export function SignIn() {
   const [state, formAction, isLoading] = useActionState(signIn, null);
   const auth = useAuth();
+  const navigate = useNavigate();
 
   async function signIn(_: unknown, formData: FormData) {
     try {
@@ -25,6 +26,7 @@ export function SignIn() {
       });
       const response = await api.post("/sessions", data);
       auth.save(response.data);
+      navigate("/");
     } catch (error) {
       console.log(error);
       if (error instanceof ZodError) {

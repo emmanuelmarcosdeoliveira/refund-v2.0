@@ -42,7 +42,7 @@ export function SignUp() {
         role: formData.get("role"),
       });
       await api.post("/users", data);
-      navigate("/");
+      navigate("/signin");
     } catch (error) {
       if (error instanceof ZodError) {
         return { message: error.issues[0].message };
