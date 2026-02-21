@@ -72,7 +72,9 @@ export function SecureImage({ src, filename }: SecureImageProps) {
     <div className="flex flex-col items-center gap-2">
       <Button
         type="button"
+        className="p-2"
         onClick={handleDownload}
+
        
       >
         Baixar Comprovante
