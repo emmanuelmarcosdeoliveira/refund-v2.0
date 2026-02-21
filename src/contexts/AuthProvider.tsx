@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
 import { api } from "../services/api";
+import { AuthContext } from "./AuthContext";
 
 const LOCAL_STORAGE_KEY = "@refund";
 

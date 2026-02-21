@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Button } from "./Button";
 
 interface SecureImageProps {
-  src: string; // URL da API, ex: https://refund-api-dcvr.onrender.com/uploads/arquivo.png
+  src: string; 
   alt?: string;
-  filename?: string; // nome do arquivo para download
+  filename?: string; 
 }
 
 export function SecureImage({ src, filename }: SecureImageProps) {
@@ -13,8 +14,7 @@ export function SecureImage({ src, filename }: SecureImageProps) {
 
   useEffect(() => {
     let objectUrl: string | null = null;
-    const token = localStorage.getItem("@refund:token"); // chave correta
-
+    const token = localStorage.getItem("@refund:token"); 
     if (!token) {
       setError("Token não encontrado");
       setLoading(false);
@@ -25,8 +25,7 @@ export function SecureImage({ src, filename }: SecureImageProps) {
     setError(null);
 
     fetch(`${src}?t=${Date.now()}`, {
-      // força ignorar cache 304
-      headers: {
+        headers: {
         Authorization: `Bearer ${token}`,
       },
     })
@@ -71,13 +70,13 @@ export function SecureImage({ src, filename }: SecureImageProps) {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <button
+      <Button
         type="button"
         onClick={handleDownload}
         className="rounded-lg bg-green-200 px-4 py-2 text-white transition hover:bg-green-700"
       >
         Baixar Comprovante
-      </button>
+      </Button>
     </div>
   );
 }
